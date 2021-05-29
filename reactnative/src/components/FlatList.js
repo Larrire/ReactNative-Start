@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Text, StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
+// import {BoxShadow} from 'react-native-shadow'
+import ShadowView from 'react-native-shadow-view'
 
 const TaskView = styled.View`
     background-color: #fff;
@@ -67,8 +69,21 @@ const showOptions = () => {
     
 }
 
+const shadowOpt = {
+    width:100,
+    height:100,
+    color:"#000",
+    border:2,
+    radius:3,
+    opacity:0.2,
+    x:0,
+    y:3,
+    style:{marginVertical:5}
+}
+
 export default (props) => {
     return (
+    // <BoxShadow setting={shadowOpt}>
     <TaskView style={props.data.done && styles.done}>
         <TaskSection>
             <TaskTitle style={props.data.done&&{color:'#fff', fontWeight:'bold'}}>
@@ -85,5 +100,6 @@ export default (props) => {
             <Option style={{flex:1}} onPress={()=>props.data.deleteTodo(props.data.id)}><Text>Delete</Text></Option>
         </OtherOptions>
     </TaskView>
+    // </BoxShadow>
     )
 }
