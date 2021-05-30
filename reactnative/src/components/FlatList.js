@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { Text, StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
-// import {BoxShadow} from 'react-native-shadow'
-import ShadowView from 'react-native-shadow-view'
 
 const TaskView = styled.View`
     background-color: #fff;
@@ -32,8 +31,6 @@ const BasicOptions = styled.View`
     flex-direction: row;
     align-self: center;
 `;
-
-// ;
 
 const OtherOptions = (props) => {
     const [show, setShow] = useState(true);
@@ -65,25 +62,15 @@ const styles = StyleSheet.create({
     }
 })
 
-const showOptions = () => {
-    
-}
-
-const shadowOpt = {
-    width:100,
-    height:100,
-    color:"#000",
-    border:2,
-    radius:3,
-    opacity:0.2,
-    x:0,
-    y:3,
-    style:{marginVertical:5}
-}
 
 export default (props) => {
+    const taskDetails = (id) => {
+        navigation.navigate("TaskDetails", {id})
+    }
+
+    const navigation = useNavigation();
+
     return (
-    // <BoxShadow setting={shadowOpt}>
     <TaskView style={props.data.done && styles.done}>
         <TaskSection>
             <TaskTitle style={props.data.done&&{color:'#fff', fontWeight:'bold'}}>
@@ -92,7 +79,7 @@ export default (props) => {
             </TaskTitle>
             <BasicOptions style={props.data.done && styles.done}>
                 <Option onPress={()=>props.data.toggleDone(props.data.id)}><Text>{props.data.done?'Uncheck':'Check'}</Text></Option>
-                <Option onPress={()=>showOptions()}><Text>More</Text></Option>
+                <Option onPress={()=>taskDetails(props.data.id)}><Text>More</Text></Option>
             </BasicOptions>
         </TaskSection>
         <OtherOptions className="teste" data-teste="1" style={props.data.done && styles.done}>
@@ -100,6 +87,5 @@ export default (props) => {
             <Option style={{flex:1}} onPress={()=>props.data.deleteTodo(props.data.id)}><Text>Delete</Text></Option>
         </OtherOptions>
     </TaskView>
-    // </BoxShadow>
     )
 }
