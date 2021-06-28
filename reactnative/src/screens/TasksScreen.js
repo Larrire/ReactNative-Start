@@ -51,7 +51,9 @@ const ModalTextInput = styled.TextInput`
   font-size: 18px;sdsdd
 `;
 
-const Flat = styled.FlatList``;
+const Flat = styled.FlatList`
+
+`;
 
 const Tasks = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -149,7 +151,6 @@ const Tasks = () => {
 
   return <>
       <Page>
-        <Navbar activeRoute="tasks"/>
         <StatusBar barStyle="light-content" backgroundColor="#f0f" />
         <LargeButton bgColor="#f0f" color="#fff" title="Add task" onPress={()=>setModalVisible(true)}/>
         <MyModal visible={modalVisible} controlVisible={setModalVisible}>

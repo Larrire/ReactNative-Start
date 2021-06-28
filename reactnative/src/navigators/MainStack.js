@@ -42,7 +42,6 @@ const headerOptions = {
 export default () => (
   <MainStack.Navigator screenOptions={headerOptions.default}>
 
-    {/* Screens */}
     <MainStack.Screen name="Tasks" component={TasksScreen} options={headerOptions.Tasks}/>
     <MainStack.Screen name="About" component={AboutScreen} options={headerOptions.About}/>
     <MainStack.Screen name="TaskDetails" component={TaskDetails} options={headerOptions.TaskDetails}/>

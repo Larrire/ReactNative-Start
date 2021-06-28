@@ -7,18 +7,23 @@ export default () => {
 
   const route = useRoute();
   const [task, setTask] = useState({
-    id: null, 
-    task:'Carregando...', 
+    id: null,
+    task:'Carregando...',
     done:false
-  });
+  });  
 
   const getTask = async () => {
     try {
       let storagedTodos = await AsyncStorage.getItem('@todos');
       storagedTodos = JSON.parse(storagedTodos);
-      setTimeout(()=>{
-        setTask(storagedTodos[route.params.id])
-      }, 2000);
+
+      storagedTodos.map(todo => {
+        if( route.params.id === todo.id ){
+          setTimeout(()=>{
+            setTask(todo)
+          }, 2000);
+        }
+      });
     } catch (e) {
       console.log(e)
     }
